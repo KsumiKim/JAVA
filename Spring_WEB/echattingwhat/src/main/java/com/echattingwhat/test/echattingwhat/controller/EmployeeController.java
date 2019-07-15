@@ -31,7 +31,7 @@ public class EmployeeController {
 		// get employees from db
 		List<Employee> theEmployees = employeeService.findAll();
 		
-		// add to the spring model
+		// db에서 찾은 employees를 "employees"라는 이름으로 theModel에 넣는다. 
 		theModel.addAttribute("employees", theEmployees);
 		
 		return "list-employees";
@@ -40,7 +40,7 @@ public class EmployeeController {
 	@GetMapping("/showFormForAdd")
 	public String showFormForAdd(Model theModel) {
 		
-		// create model attribute to bind from data
+		// create model attribute to bind from data 
 		Employee theEmployee = new Employee();
 		
 		theModel.addAttribute("employee", theEmployee);
@@ -64,6 +64,7 @@ public class EmployeeController {
 		
 		// save the employee
 		employeeService.save(theEmployee);
+		
 		// use a redirect to prevent duplicate submissions
 		return "redirect:/employees/list";
 	}
@@ -78,9 +79,6 @@ public class EmployeeController {
 		return "redirect:/employees/list";
 	}
 }
-
-
-
 
 
 

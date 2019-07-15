@@ -11,11 +11,11 @@ import java.net.URLEncoder;
 public class PapagApi {
 
     public static void main(String[] args) {
-        String clientId = "PAcSZfBqYXXfmWzQPzas";//¾ÖÇÃ¸®ÄÉÀÌ¼Ç Å¬¶óÀÌ¾ðÆ® ¾ÆÀÌµð°ª";
-        String clientSecret = "rmUTD0IwAb";//¾ÖÇÃ¸®ÄÉÀÌ¼Ç Å¬¶óÀÌ¾ðÆ® ½ÃÅ©¸´°ª";
+        String clientId = "PAcSZfBqYXXfmWzQPzas";
+        String clientSecret = "rmUTD0IwAb";
         
         try {
-            String text = URLEncoder.encode("¾È³çÇÏ¼¼¿ä. ¿À´Ã ±âºÐÀº ¾î¶»½À´Ï±î?", "UTF-8");
+            String text = URLEncoder.encode("ï¿½È³ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½. ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½î¶»ï¿½ï¿½ï¿½Ï±ï¿½?", "UTF-8");
             String apiURL = "https://openapi.naver.com/v1/papago/n2mt";
             URL url = new URL(apiURL);
             HttpURLConnection con = (HttpURLConnection)url.openConnection();
@@ -31,9 +31,9 @@ public class PapagApi {
             wr.close();
             int responseCode = con.getResponseCode();
             BufferedReader br;
-            if(responseCode==200) { // Á¤»ó È£Ãâ
+            if(responseCode==200) { // ï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½
                 br = new BufferedReader(new InputStreamReader(con.getInputStream()));
-            } else {  // ¿¡·¯ ¹ß»ý
+            } else {  // ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½
                 br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
             }
             String inputLine;

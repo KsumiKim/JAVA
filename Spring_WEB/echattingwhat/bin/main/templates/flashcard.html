@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+	<h3>Flashcard</h3>
+
+	<div id = "result" th:text="${flashcard.word}"></div>
+	<hidden id = "flashcardId" value="${flashcard.id}"/>
+	<!--  <p th:text="${flashcard.meaning}"/>  -->
+	
+ 	<button id = "btn1">Show Meaning </button> 
+
+</body>
+</html>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+	$('#btn1').on('click', function() {
+/* 		 var form = {
+				meaning: 1
+		}  */
+		$.ajax({
+			url: "requestMeaning",
+			type: "POST",
+ 			data: $("#flashcardId"),
+			success: function(data) {
+				console.log(data);
+				$('#result').text(data);
+			},
+			error: function() {
+				alert("sampleWithObject err");
+			}
+		});
+	});
+		
+	/*
+	1. '인공지능'을 Database에서 가져오기 
+	--> 버튼에 word의 id를 controller에 넘기고
+	--> controller에서 id를 받아서 그 id에 해당하는 meaning을 db에서 가져온다. 
+	--> 그리고 return으로 넘겨준다. 
+	2. 버튼을 한번 더 클릭하면 값이 리셋되어 번갈아 확인할 수 있게 만들기 
+	3. << >> 버튼 추가하여 해당 단어의 다음 / 이전 단어 불러오기 
+	*/
+	
+</script>	

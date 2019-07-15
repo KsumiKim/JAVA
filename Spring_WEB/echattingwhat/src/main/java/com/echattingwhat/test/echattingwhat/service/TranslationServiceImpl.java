@@ -7,49 +7,44 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.echattingwhat.test.echattingwhat.dao.EmployeeRepository;
+import com.echattingwhat.test.echattingwhat.dao.TranslationRepository;
 import com.echattingwhat.test.echattingwhat.entity.Employee;
+import com.echattingwhat.test.echattingwhat.entity.Translation;
 
 @Service
-public class EmployeeServiceImpl implements EmployeeService {
+public class TranslationServiceImpl implements TranslationService {
 
-	private EmployeeRepository employeeRepository;
+	private TranslationRepository translationRepository;
 	
 	@Autowired
-	public EmployeeServiceImpl(EmployeeRepository theEmployeeRepository) {
-		employeeRepository = theEmployeeRepository;
+	public TranslationServiceImpl(TranslationRepository thetranslationRepository) {
+		translationRepository = thetranslationRepository;
 	}
 	
-	@Override
-	public List<Employee> findAll() {
-		return employeeRepository.findAllByOrderByFirstNameAsc();
-	}
 
 	@Override
-	public Employee findById(int theId) {
+	public Translation findById(int theId) {
 		// employeeId로 employee를 찾는다.
-		Optional<Employee> result = employeeRepository.findById(theId);
+		Optional<Translation> result = translationRepository.findById(theId);
 		
-		Employee theEmployee = null;
+		Translation theTranslation = null;
 		
 		if (result.isPresent()) {
-			theEmployee = result.get();
+			theTranslation = result.get();
 		}
 		else {
 			// we didn't find the employee
 			throw new RuntimeException("Did not find employee id - " + theId);
 		}
 		// 매개변수로 받은 id를 가진 employee를 리턴한다. 
-		return theEmployee;
+		return theTranslation;
 	}
 
-	@Override
-	public void save(Employee theEmployee) {
-		employeeRepository.save(theEmployee);
-	}
 
 	@Override
-	public void deleteById(int theId) {
-		employeeRepository.deleteById(theId);
+	public void save(Translation theTranslation) {
+		translationRepository.save(theTranslation);
+
 	}
 
 }
